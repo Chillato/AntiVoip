@@ -25,7 +25,7 @@ async def aggiunta_antivoip(client, message):
                 utentevoip = await client.get_users(message.from_user.id)
                 if not utentevoip.dc_id == None and not utentevoip.dc_id == 4:
                     await client.ban_chat_member(message.chat.id, message.from_user.id)
-                    await message.reply(f"{utentevoip.mention} è risultato voip")
+                    await message.reply(f"🚷 {utentevoip.mention} è risultato voip\nAzione: Bannato")
                 elif utentevoip.dc_id == None:
                     await client.restrict_chat_member(message.chat.id, message.from_user.id, ChatPermissions(can_send_messages=False, can_send_media_messages=False, can_send_other_messages=False))
                     await message.reply_text(f"{utentevoip.mention} non hai un immagine profile impostala e premi fatto!", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✅ FATTO ✅", "fatto_"+str(message.from_user.id))]]))
@@ -43,7 +43,7 @@ async def bottoni(client, query):
                 await query.message.delete()
             elif not queryvoip.dc_id == None and not queryvoip.dc_id == 4:
                 await client.ban_chat_member(query.message.chat.id, query.from_user.id)
-                await query.message.edit(f"{queryvoip.mention} è risultato voip")
+                await query.message.edit(f"🚷 {queryvoip.mention} è risultato voip\nAzione: Bannato")
             elif queryvoip.dc_id == None:
                 await query.answer("imposta un immagine!", show_alert=True)
 
